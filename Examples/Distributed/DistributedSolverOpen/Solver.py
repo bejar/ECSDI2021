@@ -86,16 +86,18 @@ def message():
                         return 'ERROR: UNKNOWN PROBLEM TYPE'
                 else:
                     return 'ERROR: WRONG PARAMETERS'
+            # respuesta del solver con una solucion
             elif messtype == 'SOLVED':
                 solution = messparam.split(',')
                 if len(solution) == 2:
                     probid, sol = solution
                     if probid in problems:
                         problems[probid][3] = 'SOLVED'
-                        requests.get(problems[probid][1] + '/message',
-                                     params={'message': f'SOLVED|{probid},{sol}'})
+                        resp = requests.get(problems[probid][1] + '/message',
+                                     params={'message': f'SOLVED|{probid},{sol}'}).text
+                    return 'OK'
                 return 'OK'
-    return 'ERROR: UNKNOWN ERROR'
+    return ''
 
 @app.route('/info')
 def info():
@@ -163,7 +165,7 @@ if __name__ == '__main__':
             logger = loggeradd[4:]
 
         # Ponemos en marcha el servidor Flask
-        app.run(host=hostname, port=port, debug=False, use_reloader=False)
+        app.run(host=hostname, port=port, debug=True, use_reloader=False)
 
         mess = f'UNREGISTER|{solverid}'
         requests.get(diraddress + '/message', params={'message': mess})

@@ -56,7 +56,6 @@ asignar una tarea a otros agentes
     Entradas Web:
        /info = Lista de problemas recibidos
 
-
  * Arithmetic.py
 
     Solver de problemas ARITH (evalua una expresion aritmetica)
