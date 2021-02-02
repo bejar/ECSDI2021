@@ -111,10 +111,10 @@ def register():
 
         # Generamos un mensaje de respuesta
         return build_message(Graph(),
-            ACL.confirm,
-            sender=DirectoryAgent.uri,
-            receiver=agn_uri,
-            msgcnt=mss_cnt)
+                             ACL.confirm,
+                             sender=DirectoryAgent.uri,
+                             receiver=agn_uri,
+                             msgcnt=mss_cnt)
 
     def process_search():
         # Asumimos que hay una accion de busqueda que puede tener
@@ -148,9 +148,9 @@ def register():
         else:
             # Si no encontramos nada retornamos un inform sin contenido
             return build_message(Graph(),
-                ACL.inform,
-                sender=DirectoryAgent.uri,
-                msgcnt=mss_cnt)
+                                 ACL.inform,
+                                 sender=DirectoryAgent.uri,
+                                 msgcnt=mss_cnt)
 
     global dsgraph
     global mss_cnt
@@ -165,17 +165,17 @@ def register():
     if not msgdic:
         # Si no es, respondemos que no hemos entendido el mensaje
         gr = build_message(Graph(),
-            ACL['not-understood'],
-            sender=DirectoryAgent.uri,
-            msgcnt=mss_cnt)
+                           ACL['not-understood'],
+                           sender=DirectoryAgent.uri,
+                           msgcnt=mss_cnt)
     else:
         # Obtenemos la performativa
         if msgdic['performative'] != ACL.request:
             # Si no es un request, respondemos que no hemos entendido el mensaje
             gr = build_message(Graph(),
-                ACL['not-understood'],
-                sender=DirectoryAgent.uri,
-                msgcnt=mss_cnt)
+                               ACL['not-understood'],
+                               sender=DirectoryAgent.uri,
+                               msgcnt=mss_cnt)
         else:
             # Extraemos el objeto del contenido que ha de ser una accion de la ontologia
             # de registro
@@ -192,9 +192,9 @@ def register():
             # No habia ninguna accion en el mensaje
             else:
                 gr = build_message(Graph(),
-                        ACL['not-understood'],
-                        sender=DirectoryAgent.uri,
-                        msgcnt=mss_cnt)
+                                   ACL['not-understood'],
+                                   sender=DirectoryAgent.uri,
+                                   msgcnt=mss_cnt)
     mss_cnt += 1
     return gr.serialize(format='xml')
 

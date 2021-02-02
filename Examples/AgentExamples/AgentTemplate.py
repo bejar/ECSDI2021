@@ -25,7 +25,6 @@ from AgentUtil.Agent import Agent
 
 __author__ = 'javier'
 
-
 # Configuration stuff
 hostname = socket.gethostname()
 port = 9010
@@ -47,7 +46,6 @@ DirectoryAgent = Agent('DirectoryAgent',
                        agn.Directory,
                        'http://%s:9000/Register' % hostname,
                        'http://%s:9000/Stop' % hostname)
-
 
 # Global triplestore graph
 dsgraph = Graph()
@@ -108,5 +106,3 @@ if __name__ == '__main__':
     # Esperamos a que acaben los behaviors
     ab1.join()
     print('The End')
-
-

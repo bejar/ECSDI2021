@@ -197,10 +197,10 @@ def comunicacion():
             # Aqui realizariamos lo que pide la accion
             # Por ahora simplemente retornamos un Inform-done
             gr = build_message(Graph(),
-                ACL['inform-done'],
-                sender=InfoAgent.uri,
-                msgcnt=mss_cnt,
-                receiver=msgdic['sender'], )
+                               ACL['inform-done'],
+                               sender=InfoAgent.uri,
+                               msgcnt=mss_cnt,
+                               receiver=msgdic['sender'], )
     mss_cnt += 1
 
     logger.info('Respondemos a la peticion')

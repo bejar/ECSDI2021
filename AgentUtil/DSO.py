@@ -1,7 +1,7 @@
 """
 .. module:: DSO
 
- Translated by owl2rflib
+ Translated by owl2rdflib
 
  Translated to RDFlib from ontology http://www.semanticweb.org/directory-service-ontology#
 

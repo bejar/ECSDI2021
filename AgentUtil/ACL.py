@@ -1,7 +1,7 @@
 """
 .. module:: ACL
 
- Translated by owl2rflib
+ Translated by owl2rdflib
 
  Translated to RDFlib from ontology http://www.nuin.org/ontology/fipa/acl
 
