@@ -6,7 +6,7 @@ DBPedia2
 
 :Description: DBPedia2
 
-    Different Auxiliary functions used for different purposes
+    Consulta de las clases que hay en la ontologia de DBPedia
 
 :Authors:
     bejar

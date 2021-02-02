@@ -1,5 +1,16 @@
-__author__ = 'javier'
+_# -*- coding: utf-8 -*-
 """
+File: infoLinkedGeodata.py
+
+Created on 01/02/2014 11:32
+
+Ejemplo de queries SPARQL en Linked Geodata
+
+@author: bejar
+
+Requiere mirarse la ontologia LGDO y los atributos/relaciones que
+tienen definidos
+
 lgdo:Amenity
   lgdo:Bar
   lgdo:Restaurant
@@ -17,6 +28,7 @@ lgdo:Amenity
 from SPARQLWrapper import SPARQLWrapper, JSON
 from AgentUtil.SPARQLPoints import GEODATA, LGEODATA
 
+__author__ = 'javier'
 
 sparql = SPARQLWrapper(GEODATA)
 
