@@ -2,7 +2,6 @@
 
 Ejemplos y codigo para la practica de ECSDI cuatrimestre de primavera 2020/2021
 
-
 * `/AgentUtil` Clases con funciones utiles para la practica
 * `/Examples/AgentExamples` Plantillas para desarrolar agentes + ejemplos
 * `/Exammples/Concurrencia` Ejemplos de la documentacion de laboratorio sobre libreria de concurrencia de python
