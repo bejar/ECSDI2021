@@ -5,7 +5,7 @@
 
  Translated to RDFlib from ontology http://www.nuin.org/ontology/fipa/acl
 
- :Date 16/12/2020 18:22:11
+ :Date 03/02/2021 07:33:14
 """
 from rdflib import URIRef
 from rdflib.namespace import ClosedNamespace
@@ -14,22 +14,48 @@ ACL =  ClosedNamespace(
     uri=URIRef('http://www.nuin.org/ontology/fipa/acl'),
     terms=[
         # Classes
-        'SpeechAct',
         'FipaAclMessage',
         'KsMessage',
+        'SpeechAct',
+
         # Object properties
-        'sender',
         'receiver',
+        'reply-to',
         'ontology',
-        'reply_to',
         'performative',
+        'sender',
+
         # Data properties
-        'reply_by',
-        'conversation_id',
+        'language',
         'encoding',
-        'in_reply_to',
-        'reply_with',
         'content',
-        'language'
+        'reply-by',
+        'reply-with',
+        'conversation-id',
+        'in-reply-to',
+
+        # Named Individuals
+        'refuse',
+        'subscribe',
+        'agree',
+        'query-ref',
+        'request',
+        'request-whenever',
+        'query-if',
+        'proxy',
+        'cancel',
+        'propose',
+        'cfp',
+        'reject-proposal',
+        'failure',
+        'accept-proposal',
+        'not-understood',
+        'inform',
+        'inform-if',
+        'inform-ref',
+        'propagate',
+        'confirm',
+        'request-when',
+        'disconfirm'
     ]
 )

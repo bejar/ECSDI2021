@@ -22,7 +22,7 @@ import socket
 import argparse
 
 from flask import Flask, request, render_template
-from rdflib import Graph, RDF, Namespace, RDFS
+from rdflib import Graph, RDF, Namespace, RDFS, Literal
 from rdflib.namespace import FOAF
 
 from AgentUtil.ACL import ACL
@@ -210,7 +210,7 @@ def info():
     return render_template('info.html', nmess=mss_cnt, graph=dsgraph.serialize(format='turtle'))
 
 
-@app.route("/Stop")
+@app.route("/stop")
 def stop():
     """
     Entrada que para el agente

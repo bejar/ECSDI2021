@@ -10,14 +10,13 @@ Created on 08/02/2014
 """
 __author__ = 'javier'
 
-from rdflib import Graph
+from rdflib import Graph, URIRef
 import requests
-from rdflib.namespace import RDF
+from rdflib.namespace import RDF, OWL
+from AgentUtil.ACL import ACL
 
-from AgentUtil.OntoNamespaces import ACL
 
-
-def build_message(gmess, perf, sender=None, receiver=None,  content=None, msgcnt= 0):
+def build_message(gmess, perf, sender=None, receiver=None,  content=None, msgcnt=0):
     """
     Construye un mensaje como una performativa FIPA acl
     Asume que en el grafo que se recibe esta ya el contenido y esta ligado al
@@ -33,8 +32,10 @@ def build_message(gmess, perf, sender=None, receiver=None,  content=None, msgcnt
     """
     # Añade los elementos del speech act al grafo del mensaje
     mssid = f'message-{sender.__hash__()}-{msgcnt:04}'
-    ms = ACL[mssid]
+    # No podemos crear directamente una instancia en el namespace ACL ya que es un ClosedNamedspace
+    ms = URIRef(mssid)
     gmess.bind('acl', ACL)
+    gmess.add((ms, RDF.type, OWL.NamedIndividual)) # Declaramos la URI como instancia
     gmess.add((ms, RDF.type, ACL.FipaAclMessage))
     gmess.add((ms, ACL.performative, perf))
     gmess.add((ms, ACL.sender, sender))
@@ -71,6 +72,7 @@ def get_message_properties(msg):
              'receiver': ACL.receiver, 'ontology': ACL.ontology,
              'conversation-id': ACL['conversation-id'],
              'in-reply-to': ACL['in-reply-to'], 'content': ACL.content}
+
     msgdic = {} # Diccionario donde se guardan los elementos del mensaje
 
     # Extraemos la parte del FipaAclMessage del mensaje

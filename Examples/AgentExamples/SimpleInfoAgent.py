@@ -47,7 +47,7 @@ if args.port is None:
 else:
     port = args.port
 
-if args.open is None:
+if args.open:
     hostname = '0.0.0.0'
 else:
     hostname = socket.gethostname()
@@ -138,7 +138,7 @@ def browser_iface():
     return 'Nothing to see here'
 
 
-@app.route("/Stop")
+@app.route("/stop")
 def stop():
     """
     Entrypoint que para el agente
@@ -197,7 +197,7 @@ def comunicacion():
             # Aqui realizariamos lo que pide la accion
             # Por ahora simplemente retornamos un Inform-done
             gr = build_message(Graph(),
-                               ACL['inform-done'],
+                               ACL['inform'],
                                sender=InfoAgent.uri,
                                msgcnt=mss_cnt,
                                receiver=msgdic['sender'], )
@@ -237,8 +237,6 @@ def agentbehavior1(cola):
         else:
             print(v)
 
-            # Selfdestruct
-            # requests.get(InfoAgent.stop)
 
 
 if __name__ == '__main__':

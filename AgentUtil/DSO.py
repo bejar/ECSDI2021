@@ -5,7 +5,7 @@
 
  Translated to RDFlib from ontology http://www.semanticweb.org/directory-service-ontology#
 
- :Date 16/12/2020 18:17:12
+ :Date 03/02/2021 07:16:48
 """
 from rdflib import URIRef
 from rdflib.namespace import ClosedNamespace
@@ -14,20 +14,30 @@ DSO =  ClosedNamespace(
     uri=URIRef('http://www.semanticweb.org/directory-service-ontology#'),
     terms=[
         # Classes
+        'Register',
+        'RegisterResult',
+        'RegisterAction',
         'Deregister',
         'InfoAgent',
         'ServiceAgent',
+        'Search',
         'SolverAgent',
         'Modify',
-        'RegisterAction',
-        'Search',
-        'RegisterResult',
-        'Register',
+
         # Object properties
         'AgentType',
+
         # Data properties
         'Uri',
+        'Name',
         'Address',
-        'Name'
+        
+        # Named Individuals
+        'FlightsAgent',
+        'HotelsAgent',
+        'TravelServiceAgent',
+        'PersonalAgent',
+        'WeatherAgent',
+        'PaymentAgent'
     ]
 )

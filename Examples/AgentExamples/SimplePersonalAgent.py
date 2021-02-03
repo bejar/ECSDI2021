@@ -50,7 +50,7 @@ if args.port is None:
 else:
     port = args.port
 
-if args.open is None:
+if args.open:
     hostname = '0.0.0.0'
 else:
     hostname = socket.gethostname()
@@ -166,7 +166,7 @@ def browser_iface():
         return render_template('riface.html', user=user, mess=mess)
 
 
-@app.route("/Stop")
+@app.route("/stop")
 def stop():
     """
     Entrypoint que para el agente
@@ -215,13 +215,6 @@ def agentbehavior1():
     # Ahora mandamos un objeto de tipo request mandando una accion de tipo Search
     # que esta en una supuesta ontologia de acciones de agentes
     infoagent_search_message(ragn_addr, ragn_uri)
-
-    # r = requests.get(ra_stop)
-    # print r.text
-
-    # Selfdestruct
-    requests.get(AgentePersonal.stop)
-
 
 if __name__ == '__main__':
     # Ponemos en marcha los behaviors
