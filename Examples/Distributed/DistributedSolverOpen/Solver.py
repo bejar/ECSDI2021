@@ -23,8 +23,20 @@ from FlaskServer import shutdown_server
 import requests
 from flask import Flask, request, render_template
 from requests import ConnectionError
+from uuid import uuid4
 
 __author__ = 'bejar'
+
+def obscure(dir):
+    """
+    Hide real hostnames
+    """
+    odir = {}
+    for d in dir:
+        _,_,port = dir[d][2].split(':')
+        odir[d] = (dir[d][0], dir[d][1], f'{uuid4()}:{port}', dir[d][3], dir[d][4])
+
+    return odir
 
 app = Flask(__name__)
 
@@ -106,7 +118,7 @@ def info():
     """
     global problems
 
-    return render_template('solverproblems.html', probs=problems)
+    return render_template('solverproblems.html', probs=obscure(problems))
 
 
 @app.route("/stop")
