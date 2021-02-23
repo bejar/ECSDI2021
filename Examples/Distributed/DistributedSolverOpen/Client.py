@@ -17,7 +17,7 @@ Client
 
 """
 
-import socket
+from Util import gethostname
 import argparse
 from FlaskServer import shutdown_server
 import requests
@@ -159,10 +159,10 @@ if __name__ == '__main__':
     if args.open:
         hostname = '0.0.0.0'
     else:
-        hostname = socket.gethostname()
+        hostname = gethostname()
 
-    clientadd = f'http://{socket.gethostname()}:{port}'
-    clientid = socket.gethostname().split('.')[0] + '-' + str(port)
+    clientadd = f'http://{gethostname()}:{port}'
+    clientid = gethostname().split('.')[0] + '-' + str(port)
 
     if args.dir is None:
         raise NameError('A Directory Service addess is needed')

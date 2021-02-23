@@ -16,14 +16,13 @@ Arithmetic
 :Created on: 06/02/2018 8:21 
 
 """
-
-import socket
 import argparse
 from FlaskServer import shutdown_server
 import requests
 from flask import Flask, request
 from requests import ConnectionError
 from multiprocessing import Process
+from Util import gethostname
 
 __author__ = 'bejar'
 
@@ -107,7 +106,7 @@ if __name__ == '__main__':
     if args.open:
         hostname = '0.0.0.0'
     else:
-        hostname = socket.gethostname()
+        hostname = gethostname()
 
     if args.dir is None:
         raise NameError('A Directory Service addess is needed')
@@ -115,8 +114,8 @@ if __name__ == '__main__':
         diraddress = args.dir
 
     # Registramos el solver aritmetico en el servicio de directorio
-    solveradd = f'http://{socket.gethostname()}:{port}'
-    solverid = socket.gethostname().split('.')[0] + '-' + str(port)
+    solveradd = f'http://{gethostname()}:{port}'
+    solverid = gethostname().split('.')[0] + '-' + str(port)
     mess = f'REGISTER|{solverid},ARITH,{solveradd}'
 
     done = False

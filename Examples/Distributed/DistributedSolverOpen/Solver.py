@@ -17,7 +17,7 @@ Solver
 
 """
 
-import socket
+from Util import gethostname
 import argparse
 from FlaskServer import shutdown_server
 import requests
@@ -137,7 +137,7 @@ if __name__ == '__main__':
     if args.open:
         hostname = '0.0.0.0'
     else:
-        hostname = socket.gethostname()
+        hostname = gethostname()
 
     if args.dir is None:
         raise NameError('A Directory Service addess is needed')
@@ -145,8 +145,8 @@ if __name__ == '__main__':
         diraddress = args.dir
 
     # Registramos el solver en el servicio de directorio
-    solveradd = f'http://{socket.gethostname()}:{port}'
-    solverid = socket.gethostname().split('.')[0] + '-' + str(port)
+    solveradd = f'http://{gethostname()}:{port}'
+    solverid = gethostname().split('.')[0] + '-' + str(port)
     mess = f'REGISTER|{solverid},SOLVER,{solveradd}'
 
     done = False

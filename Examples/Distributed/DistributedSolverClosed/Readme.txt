@@ -39,7 +39,7 @@ Los solvers genericos tienen un limite de solvers especificos que pueden tener a
     Parametros:
       --open = permite conexiones desde hosts remotos (no por defecto)
       --port = port de comunicacion (9001 por defecto)
-      --directory = Direccion completa del servicio de directorio
+      --dir = Direccion completa del servicio de directorio
 
     Entradas Web:
        /iface = Formulario para enviar problemas
@@ -66,7 +66,7 @@ Los solvers genericos tienen un limite de solvers especificos que pueden tener a
     Parametros:
       --open = permite conexiones desde hosts remotos (no por defecto)
       --port = port de comunicacion (9020 por defecto)
-      --directory = Direccion completa del servicio de directorio
+      --dir = Direccion completa del servicio de directorio
 
  * LetterCounter.py
 
@@ -75,7 +75,7 @@ Los solvers genericos tienen un limite de solvers especificos que pueden tener a
     Parametros:
       --open = permite conexiones desde hosts remotos (no por defecto)
       --port = port de comunicacion (9030 por defecto)
-      --directory = Direccion completa del servicio de directorio
+      --dir = Direccion completa del servicio de directorio
 
  * Logger.py
 
@@ -83,7 +83,7 @@ Los solvers genericos tienen un limite de solvers especificos que pueden tener a
 
       --open = permite conexiones desde hosts remotos (no por defecto)
       --port = port de comunicacion (9100 por defecto)
-      --directory = Direccion completa del servicio de directorio
+      --dir = Direccion completa del servicio de directorio
 
     Entradas Web:
        /info = Grafica de la actividad de los solvers
