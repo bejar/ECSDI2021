@@ -25,10 +25,20 @@ from flask import Flask, request, render_template
 import numpy as np
 import time
 from random import randint
+from uuid import uuid4
 
 __author__ = 'bejar'
 
 app = Flask(__name__)
+
+def obscure(dir):
+    """
+    Hide real hostnames
+    """
+    odir = {}
+    for d in dir:
+        hname,port = dir[d][1].split(':')
+        odir[d] = (dir[d][0], f'{uuid4()}:{port}', dir[d][2])
 
 directory = {}
 loadbalance = {}
@@ -105,7 +115,7 @@ def info():
     global directory
     global loadbalance
 
-    return render_template('directory.html', dir=directory, bal=loadbalance)
+    return render_template('directory.html', dir=obscure(directory), bal=loadbalance)
 
 
 @app.route("/stop")

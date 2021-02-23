@@ -119,7 +119,7 @@ def info():
     global directory
     global loadbalance
 
-    return render_template('directory.html', dir=directory, bal=loadbalance)
+    return render_template('directory.html', dir=obscure(directory), bal=loadbalance)
 
 
 @app.route("/stop")
