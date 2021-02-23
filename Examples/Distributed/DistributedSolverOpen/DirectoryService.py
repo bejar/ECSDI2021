@@ -28,9 +28,6 @@ from random import randint
 from uuid import uuid4
 
 __author__ = 'bejar'
-
-app = Flask(__name__)
-
 def obscure(dir):
     """
     Hide real hostnames
@@ -40,6 +37,9 @@ def obscure(dir):
         print(dir[d])
         _,_,port = dir[d][1].split(':')
         odir[d] = (dir[d][0], f'{uuid4()}:{port}', dir[d][2])
+
+
+app = Flask(__name__)
 
 directory = {}
 loadbalance = {}
