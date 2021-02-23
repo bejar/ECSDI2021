@@ -159,7 +159,7 @@ if __name__ == '__main__':
     if 'OK' in resp:
         print(f'LOGGER successfully registered')
         # Ponemos en marcha el servidor Flask
-        app.run(host=hostname, port=port, debug=True, use_reloader=False)
+        app.run(host=hostname, port=port, debug=False, use_reloader=False)
 
         mess = f'UNREGISTER|{loggerid}'
         requests.get(diraddress + '/message', params={'message': mess})

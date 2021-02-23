@@ -150,7 +150,7 @@ if __name__ == '__main__':
         solvers = reg
 
         # Ponemos en marcha el servidor Flask
-        app.run(host=hostname, port=port, debug=True, use_reloader=False)
+        app.run(host=hostname, port=port, debug=False, use_reloader=False)
 
         # Notificamos a los solvers contratados de que ya no son necesarios
         for soladd in solvers:
