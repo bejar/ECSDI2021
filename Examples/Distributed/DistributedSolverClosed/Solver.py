@@ -25,6 +25,8 @@ from flask import Flask, request, render_template
 from requests import ConnectionError
 from random import randint
 from uuid import uuid4
+import logging
+
 
 __author__ = 'bejar'
 
@@ -40,6 +42,8 @@ def obscure(dir):
     return odir
 
 app = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 problems = {}
 minions = {'ARITH': {}, 'MFREQ': {}}

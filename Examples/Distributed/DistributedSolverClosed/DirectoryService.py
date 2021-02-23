@@ -41,7 +41,8 @@ def obscure(dir):
     return odir
 
 app = Flask(__name__)
-app.logger.setLevel(logging.ERROR)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 directory = {}
 loadbalance = {}

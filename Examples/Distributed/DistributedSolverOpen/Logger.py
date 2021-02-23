@@ -77,9 +77,8 @@ def info():
     solvers = workers_logging.keys()
     for solv in workers_logging:
         for tp in workers_logging[solv]:
-            # types.add(tp)
-            types.add(uuid4())
-    print(types)
+            types.add(tp)
+
     lbars = []
     for t in types:
         bar = []
@@ -100,7 +99,8 @@ def info():
     plt.ylabel('Solver')
     plt.xlabel('Num probs')
     plt.title(f"Resuelto desde {time.strftime('%Y-%m-%d %H:%M')}")
-    plt.yticks(index + bar_width / 2, solvers)
+    ids = [uuid4() for _ in range(len(solvers))]
+    plt.yticks(index + bar_width / 2, ids)
     plt.legend()
 
     plt.tight_layout()

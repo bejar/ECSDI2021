@@ -31,6 +31,7 @@ from AgentUtil.Agent import Agent
 from AgentUtil.ACLMessages import build_message, get_message_properties
 from AgentUtil.Logging import config_logger
 from AgentUtil.DSO import DSO
+from AgentUtil.Util import gethostname
 
 __author__ = 'javier'
 
@@ -55,7 +56,7 @@ else:
 if args.open:
     hostname = '0.0.0.0'
 else:
-    hostname = socket.gethostname()
+    hostname = gethostname()
 
 # Directory Service Graph
 dsgraph = Graph()

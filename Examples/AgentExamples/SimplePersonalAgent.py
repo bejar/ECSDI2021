@@ -19,7 +19,6 @@ import argparse
 from flask import Flask, render_template, request
 from rdflib import Graph, Namespace
 from rdflib.namespace import FOAF, RDF
-import requests
 
 from AgentUtil.ACL import ACL
 from AgentUtil.DSO import DSO
@@ -27,6 +26,7 @@ from AgentUtil.FlaskServer import shutdown_server
 from AgentUtil.ACLMessages import build_message, send_message
 from AgentUtil.Agent import Agent
 from AgentUtil.Logging import config_logger
+from AgentUtil.Util import gethostname
 
 __author__ = 'javier'
 
@@ -53,7 +53,7 @@ else:
 if args.open:
     hostname = '0.0.0.0'
 else:
-    hostname = socket.gethostname()
+    hostname = gethostname()
 
 if args.dport is None:
     dport = 9000
@@ -61,7 +61,7 @@ else:
     dport = args.dport
 
 if args.dhost is None:
-    dhostname = socket.gethostname()
+    dhostname = gethostname()
 else:
     dhostname = args.dhost
 

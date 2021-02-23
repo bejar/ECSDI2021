@@ -18,12 +18,13 @@ from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import FOAF, RDF
 
 from AgentUtil.ACL import ACL
-from AgentUtil.DSO import DSO
 from AgentUtil.FlaskServer import shutdown_server
 from AgentUtil.ACLMessages import build_message, send_message, get_message_properties
 from AgentUtil.Agent import Agent
 from AgentUtil.Logging import config_logger
 from AgentUtil.DSO import DSO
+from AgentUtil.Util import gethostname
+
 
 __author__ = 'javier'
 
@@ -50,7 +51,7 @@ else:
 if args.open:
     hostname = '0.0.0.0'
 else:
-    hostname = socket.gethostname()
+    hostname = gethostname()
 
 if args.dport is None:
     dport = 9000
@@ -58,7 +59,7 @@ else:
     dport = args.dport
 
 if args.dhost is None:
-    dhostname = socket.gethostname()
+    dhostname = gethostname()
 else:
     dhostname = args.dhost
 

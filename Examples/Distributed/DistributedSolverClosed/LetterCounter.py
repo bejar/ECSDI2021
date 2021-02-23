@@ -25,10 +25,13 @@ from flask import Flask, request
 from requests import ConnectionError
 from multiprocessing import Process
 from collections import Counter
+import logging
 
 __author__ = 'bejar'
 
 app = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 problems = {}
 solvers = []
