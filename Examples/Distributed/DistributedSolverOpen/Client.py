@@ -22,10 +22,12 @@ import argparse
 from FlaskServer import shutdown_server
 import requests
 from flask import Flask, request, render_template, url_for, redirect
+import logging
 
 __author__ = 'bejar'
 
 app = Flask(__name__)
+app.logger.setLevel(logging.ERROR)
 
 problems = {}
 probcounter = 0

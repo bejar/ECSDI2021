@@ -31,12 +31,15 @@ import matplotlib.pyplot as plt
 import base64
 import numpy as np
 import time
+import logging
+from uuid import uuid4
 
 __author__ = 'bejar'
 
 app = Flask(__name__)
+app.logger.setLevel(logging.ERROR)
 
-logging = {}
+workers_logging = {}
 
 
 @app.route("/message")
@@ -46,19 +49,19 @@ def message():
 
     :return:
     """
-    global logging
+    global workers_logging
 
     mess = request.args['message']
 
     if ',' in mess and len(mess.split(',')) == 2:
         id, prob = mess.split(',')
-        if id in logging:
-            if prob in logging[id]:
-                logging[id][prob] += 1
+        if id in workers_logging:
+            if prob in workers_logging[id]:
+                workers_logging[id][prob] += 1
             else:
-                logging[id][prob] = 1
+                workers_logging[id][prob] = 1
         else:
-            logging[id] = {prob: 1}
+            workers_logging[id] = {prob: 1}
     return 'OK'
 
 
@@ -67,21 +70,21 @@ def info():
     """
     Entrada que da informacion sobre el agente a traves de una pagina web
     """
-    global logging
+    global workers_logging
 
     types = set()
-    solvers = logging.keys()
-    for solv in logging:
-        for tp in logging[solv]:
-            types.add(tp)
-
+    solvers = workers_logging.keys()
+    for solv in workers_logging:
+        for tp in workers_logging[solv]:
+            # types.add(tp)
+            types.add(uuid4()[-5:])
     print(types)
     lbars = []
     for t in types:
         bar = []
-        for solv in logging:
-            if t in logging[solv]:
-                bar.append(logging[solv][t])
+        for solv in workers_logging:
+            if t in workers_logging[solv]:
+                bar.append(workers_logging[solv][t])
             else:
                 bar.append(0)
         lbars.append(bar)

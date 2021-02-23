@@ -24,8 +24,10 @@ import requests
 from flask import Flask, request, render_template
 from requests import ConnectionError
 from uuid import uuid4
+import logging
 
 __author__ = 'bejar'
+
 
 def obscure(dir):
     """
@@ -33,12 +35,14 @@ def obscure(dir):
     """
     odir = {}
     for d in dir:
-        _,_,port = dir[d][1].split(':')
+        _, _, port = dir[d][1].split(':')
         odir[d] = (dir[d][0], f'{uuid4()}:{port}', dir[d][2], dir[d][3])
 
     return odir
 
+
 app = Flask(__name__)
+app.logger.setLevel(logging.ERROR)
 
 problems = {}
 logger = None
@@ -106,10 +110,11 @@ def message():
                     if probid in problems:
                         problems[probid][3] = 'SOLVED'
                         resp = requests.get(problems[probid][1] + '/message',
-                                     params={'message': f'SOLVED|{probid},{sol}'}).text
+                                            params={'message': f'SOLVED|{probid},{sol}'}).text
                     return 'OK'
                 return 'OK'
     return ''
+
 
 @app.route('/info')
 def info():

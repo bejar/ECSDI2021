@@ -26,8 +26,10 @@ import numpy as np
 import time
 from random import randint
 from uuid import uuid4
+import logging
 
 __author__ = 'bejar'
+
 def obscure(dir):
     """
     Hide real hostnames
@@ -35,12 +37,13 @@ def obscure(dir):
     odir = {}
     for d in dir:
         _,_,port = dir[d][1].split(':')
-        odir[d] = (dir[d][0], f'{uuid4()}:{port}', dir[d][2])
+        odir[d] = (f'{uuid4()}-{port}', f'{uuid4()}:{port}', dir[d][2])
 
     return odir
 
 
 app = Flask(__name__)
+app.logger.setLevel(logging.ERROR)
 
 directory = {}
 loadbalance = {}
