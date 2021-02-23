@@ -77,7 +77,7 @@ def info():
     for solv in workers_logging:
         for tp in workers_logging[solv]:
             # types.add(tp)
-            types.add(uuid4()[-5:])
+            types.add(uuid4())
     print(types)
     lbars = []
     for t in types:
