@@ -38,6 +38,8 @@ def obscure(dir):
         _,_,port = dir[d][1].split(':')
         odir[d] = (dir[d][0], f'{uuid4()}:{port}', dir[d][2])
 
+    return odir
+
 
 app = Flask(__name__)
 
