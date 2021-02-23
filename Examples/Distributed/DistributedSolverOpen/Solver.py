@@ -177,7 +177,7 @@ if __name__ == '__main__':
             logger = loggeradd[4:]
 
         # Ponemos en marcha el servidor Flask
-        app.run(host=hostname, port=port, debug=True, use_reloader=False)
+        app.run(host=hostname, port=port, debug=False, use_reloader=False)
 
         mess = f'UNREGISTER|{solverid}'
         requests.get(diraddress + '/message', params={'message': mess})
