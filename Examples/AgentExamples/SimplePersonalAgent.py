@@ -13,7 +13,7 @@ Created on 09/02/2014
 """
 
 from multiprocessing import Process
-import socket
+import logging
 import argparse
 
 from flask import Flask, render_template, request
@@ -67,6 +67,8 @@ else:
 
 # Flask stuff
 app = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 # Configuration constants and variables
 agn = Namespace("http://www.agentes.org#")

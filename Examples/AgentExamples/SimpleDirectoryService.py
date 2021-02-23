@@ -18,8 +18,8 @@ directory-service-ontology.owl
 """
 
 from multiprocessing import Process, Queue
-import socket
 import argparse
+import logging
 
 from flask import Flask, request, render_template
 from rdflib import Graph, RDF, Namespace, RDFS, Literal
@@ -74,6 +74,9 @@ DirectoryAgent = Agent('DirectoryAgent',
                        'http://%s:%d/Register' % (hostname, port),
                        'http://%s:%d/Stop' % (hostname, port))
 app = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
+
 mss_cnt = 0
 
 cola1 = Queue()  # Cola de comunicacion entre procesos

@@ -10,7 +10,7 @@ Agente que se registra como agente de hoteles y espera peticiones
 """
 
 from multiprocessing import Process, Queue
-import socket
+import logging
 import argparse
 
 from flask import Flask, request
@@ -65,6 +65,8 @@ else:
 
 # Flask stuff
 app = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 # Configuration constants and variables
 agn = Namespace("http://www.agentes.org#")
