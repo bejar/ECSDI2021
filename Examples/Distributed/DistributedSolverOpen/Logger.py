@@ -37,7 +37,8 @@ from uuid import uuid4
 __author__ = 'bejar'
 
 app = Flask(__name__)
-app.logger.setLevel(logging.ERROR)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 workers_logging = {}
 
