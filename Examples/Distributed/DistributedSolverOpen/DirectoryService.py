@@ -37,7 +37,7 @@ def obscure(dir):
     odir = {}
     for d in dir:
         _,_,port = dir[d][1].split(':')
-        odir[d] = (f'{uuid4()}-{port}', f'{uuid4()}:{port}', dir[d][2])
+        odir[d] = (dir[d][2], f'{uuid4()}:{port}', dir[d][2])
 
     return odir
 
