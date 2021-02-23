@@ -53,7 +53,6 @@ def message():
             # parametros mensaje SOLVE = "SOLVERADDRESS,PROBID,PROB"
             if messtype == 'SOLVE':
                 param = messparam.split(',')
-                print(param)
                 if len(param) == 3:
                     solveraddress, probid, prob = param
                     p1 = Process(target=solver, args=(solveraddress, probid, prob))
