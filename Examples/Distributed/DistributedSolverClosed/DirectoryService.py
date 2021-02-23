@@ -18,17 +18,27 @@ DirectoryService
 
 """
 
-import socket
+from Util import gethostname
 import argparse
 from FlaskServer import shutdown_server
 
 from flask import Flask, request, render_template
 import time
 from random import  sample
+from uuid import uuid4
 
 __author__ = 'bejar'
 
 app = Flask(__name__)
+
+def obscure(dir):
+    """
+    Hide real hostnames
+    """
+    odir = {}
+    for d in dir:
+        hname,port = dir[d][1].split(':')
+        odir[d] = (dir[d][0], f'{uuid4()}:{port}', dir[d][2])
 
 directory = {}
 loadbalance = {}
@@ -139,8 +149,8 @@ if __name__ == '__main__':
     if args.open:
         hostname = '0.0.0.0'
     else:
-        hostname = socket.gethostname()
+        hostname = gethostname()
 
-    print('DS Hostname =', socket.gethostname())
+    print('DS Hostname =', gethostname())
     # Ponemos en marcha el servidor Flask
     app.run(host=hostname, port=port, debug=True, use_reloader=False)
