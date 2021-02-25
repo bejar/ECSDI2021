@@ -99,7 +99,7 @@ def info():
     plt.ylabel('Solver')
     plt.xlabel('Num probs')
     plt.title('Resuelto desde ' + time.strftime('%Y-%m-%d %H:%M'))
-    ids = [uuid4() for _ in range(len(solvers))]
+    ids = [f'Solver-{i+1}' for i in range(len(solvers))]
     plt.yticks(index + bar_width / 2, ids)
     plt.legend()
 
@@ -167,3 +167,5 @@ if __name__ == '__main__':
 
         mess = f'UNREGISTER|{loggerid}'
         requests.get(diraddress + '/message', params={'message': mess})
+    else:
+        print('Unable to register')

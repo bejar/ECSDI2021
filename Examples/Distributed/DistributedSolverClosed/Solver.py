@@ -207,3 +207,5 @@ if __name__ == '__main__':
 
         mess = f'UNREGISTER|{solverid}'
         requests.get(diraddress + '/message', params={'message': mess})
+    else:
+        print('Unable to register')
