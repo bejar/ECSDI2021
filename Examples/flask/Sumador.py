@@ -10,7 +10,7 @@ por defecto el servidor flask se pondra en marcha en http://127.0.0.1:5000/
 
 Se puede invocar al servicio desde un navegador
 
-http://127.0.0.1:5000/servicio?x=3&y=4
+http://127.0.0.1:5000/sumador?x=3&y=4
 
 @author: javier
 """
