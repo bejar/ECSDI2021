@@ -62,6 +62,8 @@ if args.open:
 else:
     hostaddr = hostname = socket.gethostname()
 
+print('DS Hostname =', hostaddr)
+
 # Directory Service Graph
 dsgraph = Graph()
 
@@ -209,7 +211,7 @@ def register():
     return gr.serialize(format='xml')
 
 
-@app.route('/Info')
+@app.route('/info')
 def info():
     """
     Entrada que da informacion sobre el agente a traves de una pagina web

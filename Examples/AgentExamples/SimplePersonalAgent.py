@@ -59,6 +59,8 @@ if args.open:
 else:
     hostaddr = hostname = socket.gethostname()
 
+print('DS Hostname =', hostaddr)
+
 if args.dport is None:
     dport = 9000
 else:
