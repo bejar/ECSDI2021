@@ -37,8 +37,7 @@ from uuid import uuid4
 __author__ = 'bejar'
 
 app = Flask(__name__)
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
+
 
 workers_logging = {}
 
@@ -125,11 +124,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--open', help="Define si el servidor esta abierto al exterior o no", action='store_true',
                         default=False)
+    parser.add_argument('--verbose', help="Genera un log de la comunicacion del servidor web", action='store_true',
+                        default=False)
     parser.add_argument('--port', type=int, help="Puerto de comunicacion del agente")
     parser.add_argument('--dir', default=None, help="Direccion del servicio de directorio")
 
     # parsing de los parametros de la linea de comandos
     args = parser.parse_args()
+
+    if not args.verbose:
+        log = logging.getLogger('werkzeug')
+        log.setLevel(logging.ERROR)
 
     # Configuration stuff
     if args.port is None:
@@ -147,6 +152,8 @@ if __name__ == '__main__':
     else:
         diraddress = args.dir
 
+    print('DS Hostname =', hostname)
+
     # Registramos el solver aritmetico en el servicio de directorio
     loggeradd = f'http://{gethostname()}:{port}'
     loggerid = gethostname().split('.')[0] + '-' + str(port)
@@ -158,6 +165,7 @@ if __name__ == '__main__':
             resp = requests.get(diraddress + '/message', params={'message': mess}).text
             done = True
         except ConnectionError:
+            print
             pass
 
     if 'OK' in resp:

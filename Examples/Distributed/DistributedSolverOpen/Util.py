@@ -24,4 +24,4 @@ def gethostname():
     try:
         return socket.gethostbyaddr(get_public_ip())[0]
     except:
-        return '127.0.0.1'
+        return socket.gethostname()

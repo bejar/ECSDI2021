@@ -27,8 +27,6 @@ import logging
 __author__ = 'bejar'
 
 app = Flask(__name__)
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
 
 problems = {}
 probcounter = 0
@@ -147,11 +145,16 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--open', help="Define si el servidor esta abierto al exterior o no", action='store_true',
                         default=False)
+    parser.add_argument('--verbose', help="Genera un log de la comunicacion del servidor web", action='store_true',
+                        default=False)
     parser.add_argument('--port', default=None, type=int, help="Puerto de comunicacion del agente")
     parser.add_argument('--dir', default=None, help="Direccion del servicio de directorio")
 
     # parsing de los parametros de la linea de comandos
     args = parser.parse_args()
+    if not args.verbose:
+        log = logging.getLogger('werkzeug')
+        log.setLevel(logging.ERROR)
 
     # Configuration stuff
     if args.port is None:
@@ -163,6 +166,8 @@ if __name__ == '__main__':
         hostname = '0.0.0.0'
     else:
         hostname = gethostname()
+
+    print('DS Hostname =', gethostname())
 
     clientadd = f'http://{gethostname()}:{port}'
     clientid = gethostname().split('.')[0] + '-' + str(port)

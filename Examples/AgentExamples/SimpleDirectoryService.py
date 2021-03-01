@@ -39,6 +39,8 @@ __author__ = 'javier'
 parser = argparse.ArgumentParser()
 parser.add_argument('--open', help="Define si el servidor est abierto al exterior o no", action='store_true',
                     default=False)
+parser.add_argument('--verbose', help="Genera un log de la comunicacion del servidor web", action='store_true',
+                        default=False)
 parser.add_argument('--port', type=int, help="Puerto de comunicacion del agente")
 
 # Logging
@@ -74,8 +76,10 @@ DirectoryAgent = Agent('DirectoryAgent',
                        'http://%s:%d/Register' % (hostname, port),
                        'http://%s:%d/Stop' % (hostname, port))
 app = Flask(__name__)
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
+
+if not args.verbose:
+    log = logging.getLogger('werkzeug')
+    log.setLevel(logging.ERROR)
 
 mss_cnt = 0
 

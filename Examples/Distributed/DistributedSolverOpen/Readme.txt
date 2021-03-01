@@ -21,6 +21,7 @@ asignar una tarea a otros agentes
 
     Parametros
       --open = permite conexiones desde hosts remotos (no por defecto)
+      --verbose = va escribiendo por terminal las peticiones que recibe el servidor http
       --port = port de comunicacion (9000 por defecto)
       --schedule = Algoritmo para el reparto de carga entre agentes
                   (equaljobs = todos los agentes registrados son asignados el mismo numero de veces,
@@ -36,6 +37,7 @@ asignar una tarea a otros agentes
 
     Parametros:
       --open = permite conexiones desde hosts remotos (no por defecto)
+      --verbose = va escribiendo por terminal las peticiones que recibe el servidor http
       --port = port de comunicacion (9001 por defecto)
       --dir = Direccion completa del servicio de directorio
 
@@ -49,6 +51,7 @@ asignar una tarea a otros agentes
 
     Parametros:
       --open = permite conexiones desde hosts remotos (no por defecto)
+      --verbose = va escribiendo por terminal las peticiones que recibe el servidor http
       --port = port de comunicacion (9010 por defecto)
       --dir = Direccion completa del servicio de directorio
 
@@ -62,6 +65,7 @@ asignar una tarea a otros agentes
 
     Parametros:
       --open = permite conexiones desde hosts remotos (no por defecto)
+      --verbose = va escribiendo por terminal las peticiones que recibe el servidor http
       --port = port de comunicacion (9020 por defecto)
       --dir = Direccion completa del servicio de directorio
 
@@ -71,6 +75,7 @@ asignar una tarea a otros agentes
 
     Parametros:
       --open = permite conexiones desde hosts remotos (no por defecto)
+      --verbose = va escribiendo por terminal las peticiones que recibe el servidor http
       --port = port de comunicacion (9030 por defecto)
       --dir = Direccion completa del servicio de directorio
 
@@ -79,6 +84,7 @@ asignar una tarea a otros agentes
     Registra la actividad de los Solvers genericos
 
       --open = permite conexiones desde hosts remotos (no por defecto)
+      --verbose = va escribiendo por terminal las peticiones que recibe el servidor http
       --port = port de comunicacion (9100 por defecto)
       --dir = Direccion completa del servicio de directorio
 

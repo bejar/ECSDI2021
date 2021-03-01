@@ -42,8 +42,6 @@ def obscure(dir):
     return odir
 
 app = Flask(__name__)
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
 
 problems = {}
 minions = {'ARITH': {}, 'MFREQ': {}}
@@ -159,11 +157,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--open', help="Define si el servidor esta abierto al exterior o no", action='store_true',
                         default=False)
+    parser.add_argument('--verbose', help="Genera un log de la comunicacion del servidor web", action='store_true',
+                        default=False)
     parser.add_argument('--port', type=int, help="Puerto de comunicacion del agente")
     parser.add_argument('--dir', default=None, help="Direccion del servicio de directorio")
 
     # parsing de los parametros de la linea de comandos
     args = parser.parse_args()
+
+    if not args.verbose:
+        log = logging.getLogger('werkzeug')
+        log.setLevel(logging.ERROR)
 
     # Configuration stuff
     if args.port is None:
@@ -180,6 +184,8 @@ if __name__ == '__main__':
         raise NameError('A Directory Service addess is needed')
     else:
         diraddress = args.dir
+
+    print('DS Hostname =', hostname)
 
     # Registramos el solver en el servicio de directorio
     solveradd = f'http://{gethostname()}:{port}'

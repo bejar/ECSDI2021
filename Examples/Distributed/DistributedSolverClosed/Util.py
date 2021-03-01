@@ -21,4 +21,7 @@ from pif import get_public_ip
 __author__ = 'bejar'
 
 def gethostname():
-    return socket.gethostbyaddr(get_public_ip())[0]
+    try:
+        return socket.gethostbyaddr(get_public_ip())[0]
+    except:
+        return socket.gethostname()

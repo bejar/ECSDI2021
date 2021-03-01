@@ -42,8 +42,6 @@ def obscure(dir):
 
 
 app = Flask(__name__)
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
 
 problems = {}
 logger = None
@@ -140,11 +138,16 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--open', help="Define si el servidor esta abierto al exterior o no", action='store_true',
                         default=False)
+    parser.add_argument('--verbose', help="Genera un log de la comunicacion del servidor web", action='store_true',
+                        default=False)
     parser.add_argument('--port', type=int, help="Puerto de comunicacion del agente")
     parser.add_argument('--dir', default=None, help="Direccion del servicio de directorio")
 
     # parsing de los parametros de la linea de comandos
     args = parser.parse_args()
+    if not args.verbose:
+        log = logging.getLogger('werkzeug')
+        log.setLevel(logging.ERROR)
 
     # Configuration stuff
     if args.port is None:
@@ -174,6 +177,7 @@ if __name__ == '__main__':
             done = True
         except ConnectionError:
             pass
+    print('DS Hostname =', gethostname())
 
     if 'OK' in resp:
         print(f'SOLVER {solverid} successfully registered')
