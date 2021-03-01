@@ -18,6 +18,7 @@ WordCounter
 """
 
 from Util import gethostname
+import socket
 import argparse
 from FlaskServer import shutdown_server
 import requests
@@ -111,10 +112,11 @@ if __name__ == '__main__':
 
     if args.open:
         hostname = '0.0.0.0'
+        hostaddr = gethostname()
     else:
-        hostname = gethostname()
+        hostaddr = hostname = socket.gethostname()
 
-    print('DS Hostname =', gethostname())
+    print('DS Hostname =', hostaddr)
 
     if args.dir is None:
         raise NameError('A Directory Service addess is needed')
@@ -122,8 +124,8 @@ if __name__ == '__main__':
         diraddress = args.dir
 
     # Registramos el solver aritmetico en el servicio de directorio
-    solveradd = f'http://{gethostname()}:{port}'
-    solverid = gethostname().split('.')[0] + '-' + str(port)
+    solveradd = f'http://{hostaddr}:{port}'
+    solverid = hostaddr.split('.')[0] + '-' + str(port)
     mess = f'REGISTER|{solverid},MFREQ,{solveradd}'
 
     done = False

@@ -23,6 +23,7 @@ from FlaskServer import shutdown_server
 import requests
 from flask import Flask, request, render_template, url_for, redirect
 import logging
+import socket
 
 __author__ = 'bejar'
 
@@ -164,13 +165,14 @@ if __name__ == '__main__':
 
     if args.open:
         hostname = '0.0.0.0'
+        hostaddr = gethostname()
     else:
-        hostname = gethostname()
+        hostaddr = hostname = socket.gethostname()
 
-    print('DS Hostname =', gethostname())
+    print('DS Hostname =', hostname)
 
-    clientadd = f'http://{gethostname()}:{port}'
-    clientid = gethostname().split('.')[0] + '-' + str(port)
+    clientadd = f'http://{hostaddr}:{port}'
+    clientid = hostaddr.split('.')[0] + '-' + str(port)
 
     if args.dir is None:
         raise NameError('A Directory Service addess is needed')

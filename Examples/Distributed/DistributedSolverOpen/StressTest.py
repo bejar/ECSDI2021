@@ -22,7 +22,7 @@ StressTest
 import argparse
 import requests
 import random, string
-from Util import gethostname
+import socket
 
 __author__ = 'bejar'
 
@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
     probcounter = 0
     diraddress = args.dir
-    clientaddress = f'http://{gethostname()}:{args.cport}' #args.client
+    clientaddress = f'http://{socket.gethostname()}:{args.cport}' #args.client
     testid = ''.join(random.choice(string.ascii_lowercase) for i in range(10))
 
     for i in range(args.n):

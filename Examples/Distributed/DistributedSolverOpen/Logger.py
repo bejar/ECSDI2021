@@ -19,6 +19,7 @@ Logger
 
 from io import BytesIO
 from Util import gethostname
+import socket
 import argparse
 from FlaskServer import shutdown_server
 import requests
@@ -37,7 +38,6 @@ from uuid import uuid4
 __author__ = 'bejar'
 
 app = Flask(__name__)
-
 
 workers_logging = {}
 
@@ -98,7 +98,7 @@ def info():
     plt.ylabel('Solver')
     plt.xlabel('Num probs')
     plt.title(f"Resuelto desde {time.strftime('%Y-%m-%d %H:%M')}")
-    ids = [f'Solver-{i+1}' for i in range(len(solvers))]
+    ids = [f'Solver-{i + 1}' for i in range(len(solvers))]
     plt.yticks(index + bar_width / 2, ids)
     plt.legend()
 
@@ -144,19 +144,20 @@ if __name__ == '__main__':
 
     if args.open:
         hostname = '0.0.0.0'
+        hostaddr = gethostname()
     else:
-        hostname = gethostname()
+        hostaddr = hostname = socket.gethostname()
 
     if args.dir is None:
         raise NameError('A Directory Service addess is needed')
     else:
         diraddress = args.dir
 
-    print('DS Hostname =', hostname)
+    print('DS Hostname =', hostaddr)
 
     # Registramos el solver aritmetico en el servicio de directorio
-    loggeradd = f'http://{gethostname()}:{port}'
-    loggerid = gethostname().split('.')[0] + '-' + str(port)
+    loggeradd = f'http://{hostaddr}:{port}'
+    loggerid = hostaddr.split('.')[0] + '-' + str(port)
     mess = f'REGISTER|{loggerid},LOGGER,{loggeradd}'
 
     done = False

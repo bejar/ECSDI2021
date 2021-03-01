@@ -18,6 +18,7 @@ DirectoryService
 
 """
 from Util import gethostname
+import socket
 import argparse
 from FlaskServer import shutdown_server
 
@@ -155,8 +156,9 @@ if __name__ == '__main__':
 
     if args.open:
         hostname = '0.0.0.0'
+        hostaddr = gethostname()
     else:
-        hostname = gethostname()
+        hostaddr = hostname = socket.gethostname()
 
     schedule = args.schedule
 
