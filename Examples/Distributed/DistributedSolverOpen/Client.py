@@ -169,7 +169,7 @@ if __name__ == '__main__':
     else:
         hostaddr = hostname = socket.gethostname()
 
-    print('DS Hostname =', hostname)
+    print('DS Hostname =', hostaddr)
 
     clientadd = f'http://{hostaddr}:{port}'
     clientid = hostaddr.split('.')[0] + '-' + str(port)

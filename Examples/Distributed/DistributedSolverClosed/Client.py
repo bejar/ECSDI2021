@@ -18,6 +18,7 @@ Client
 """
 
 from Util import gethostname
+import socket
 import argparse
 from AgentUtil.FlaskServer import shutdown_server
 import requests
@@ -163,11 +164,14 @@ if __name__ == '__main__':
 
     if args.open:
         hostname = '0.0.0.0'
+        hostaddr = gethostname()
     else:
-        hostname = gethostname()
+        hostaddr = hostname = socket.gethostname()
 
-    clientadd = f'http://{gethostname()}:{port}'
-    clientid = gethostname().split('.')[0] + '-' + str(port)
+    print('DS Hostname =', hostaddr)
+
+    clientadd = f'http://{hostaddr}:{port}'
+    clientid = hostaddr.split('.')[0] + '-' + str(port)
 
     if args.dir is None:
         raise NameError('A Directory Service addess is needed')

@@ -27,6 +27,7 @@ from AgentUtil.ACLMessages import build_message, send_message
 from AgentUtil.Agent import Agent
 from AgentUtil.Logging import config_logger
 from AgentUtil.Util import gethostname
+import socket
 
 __author__ = 'javier'
 
@@ -54,8 +55,9 @@ else:
 
 if args.open:
     hostname = '0.0.0.0'
+    hostaddr = gethostname()
 else:
-    hostname = gethostname()
+    hostaddr = hostname = socket.gethostname()
 
 if args.dport is None:
     dport = 9000
@@ -82,8 +84,8 @@ mss_cnt = 0
 # Datos del Agente
 AgentePersonal = Agent('AgentePersonal',
                        agn.AgentePersonal,
-                       'http://%s:%d/comm' % (hostname, port),
-                       'http://%s:%d/Stop' % (hostname, port))
+                       'http://%s:%d/comm' % (hostaddr, port),
+                       'http://%s:%d/Stop' % (hostaddr, port))
 
 # Directory agent address
 DirectoryAgent = Agent('DirectoryAgent',

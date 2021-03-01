@@ -179,7 +179,7 @@ if __name__ == '__main__':
             done = True
         except ConnectionError:
             pass
-    print('DS Hostname =', gethostname())
+    print('DS Hostname =', hostaddr)
 
     if 'OK' in resp:
         print(f'SOLVER {solverid} successfully registered')

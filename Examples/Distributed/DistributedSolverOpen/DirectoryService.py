@@ -162,6 +162,6 @@ if __name__ == '__main__':
 
     schedule = args.schedule
 
-    print('DS Hostname =', hostname)
+    print('DS Hostname =', hostaddr)
     # Ponemos en marcha el servidor Flask
     app.run(host=hostname, port=port, debug=False, use_reloader=False)

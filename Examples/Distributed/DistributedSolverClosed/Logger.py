@@ -19,6 +19,7 @@ Logger
 
 from io import BytesIO
 from Util import gethostname
+import socket
 import argparse
 from FlaskServer import shutdown_server
 import requests
@@ -141,21 +142,22 @@ if __name__ == '__main__':
     else:
         port = args.port
 
-    if args.open:
-        hostname = '0.0.0.0'
-    else:
-        hostname = gethostname()
-
     if args.dir is None:
         raise NameError('A Directory Service addess is needed')
     else:
         diraddress = args.dir
 
-    print('DS Hostname =', hostname)
+    if args.open:
+        hostname = '0.0.0.0'
+        hostaddr = gethostname()
+    else:
+        hostaddr = hostname = socket.gethostname()
+
+    print('DS Hostname =', hostaddr)
 
     # Registramos el solver aritmetico en el servicio de directorio
-    loggeradd = f'http://{gethostname()}:{port}'
-    loggerid = gethostname().split('.')[0] + '-' + str(port)
+    loggeradd = f'http://{hostaddr}:{port}'
+    loggerid = hostaddr.split('.')[0] + '-' + str(port)
     mess = f'REGISTER|{loggerid},LOGGER,{loggeradd}'
 
     done = False

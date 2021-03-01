@@ -18,6 +18,7 @@ Arithmetic
 """
 
 from Util import gethostname
+import socket
 import argparse
 from FlaskServer import shutdown_server
 import requests
@@ -113,18 +114,20 @@ if __name__ == '__main__':
 
     if args.open:
         hostname = '0.0.0.0'
+        hostaddr = gethostname()
     else:
-        hostname = gethostname()
+        hostaddr = hostname = socket.gethostname()
+
+    print('DS Hostname =', hostaddr)
 
     if args.dir is None:
         raise NameError('A Directory Service addess is needed')
     else:
         diraddress = args.dir
 
-    print('DS Hostname =', hostname)
     # El solver aritmetico busca en el servicio de directorio 2 solvers con los que asociarse
-    solveradd = f'http://{gethostname()}:{port}'
-    solverid = gethostname().split('.')[0] + '-' + str(port)
+    solveradd = f'http://{hostaddr}:{port}'
+    solverid = hostaddr.split('.')[0] + '-' + str(port)
     mess = 'SEARCH|SOLVER,2'
 
     done = False

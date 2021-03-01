@@ -32,6 +32,7 @@ from AgentUtil.ACLMessages import build_message, get_message_properties
 from AgentUtil.Logging import config_logger
 from AgentUtil.DSO import DSO
 from AgentUtil.Util import gethostname
+import socket
 
 __author__ = 'javier'
 
@@ -57,8 +58,9 @@ else:
 
 if args.open:
     hostname = '0.0.0.0'
+    hostaddr = gethostname()
 else:
-    hostname = gethostname()
+    hostaddr = hostname = socket.gethostname()
 
 # Directory Service Graph
 dsgraph = Graph()
@@ -73,8 +75,8 @@ dsgraph.bind('dso', DSO)
 agn = Namespace("http://www.agentes.org#")
 DirectoryAgent = Agent('DirectoryAgent',
                        agn.Directory,
-                       'http://%s:%d/Register' % (hostname, port),
-                       'http://%s:%d/Stop' % (hostname, port))
+                       'http://%s:%d/Register' % (hostaddr, port),
+                       'http://%s:%d/Stop' % (hostaddr, port))
 app = Flask(__name__)
 
 if not args.verbose:
