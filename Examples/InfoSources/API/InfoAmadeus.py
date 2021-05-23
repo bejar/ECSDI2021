@@ -43,7 +43,7 @@ try:
     response = amadeus.shopping.flight_offers_search.get(
         originLocationCode='BCN',
         destinationLocationCode='PAR',
-        departureDate='2021-04-01',
+        departureDate='2021-06-01',
         adults=1)
     print("FLIGHTS")
     print("-----------------------------------")
@@ -53,11 +53,22 @@ except ResponseError as error:
 
 # Hotels query
 try:
-    response = amadeus.shopping.hotel_offers.get(cityCode = 'LON')
+    response = amadeus.shopping.hotel_offers.get(cityCode='LON')
     print("-----------------------------------")
     print("HOTELS")
     print("-----------------------------------")
-    ppr.pprint(response.data)
+    for h in response.data:
+        ppr.pprint(h['hotel']['name'])
+    print('---')
+    # Siguientes paginas de resultados
+    response = amadeus.next(response)
+    for h in response.data:
+        ppr.pprint(h['hotel']['name'])
+    print('---')
+    response = amadeus.next(response)
+    for h in response.data:
+        ppr.pprint(h['hotel']['name'])
+
 except ResponseError as error:
     print(error)
 
