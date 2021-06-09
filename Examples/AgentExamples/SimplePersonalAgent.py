@@ -67,7 +67,7 @@ else:
     dport = args.dport
 
 if args.dhost is None:
-    dhostname = gethostname()
+    dhostname = socket.gethostname()
 else:
     dhostname = args.dhost
 
